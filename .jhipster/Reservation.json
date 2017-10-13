@@ -1,0 +1,62 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "salleReservee",
+            "otherEntityName": "salle",
+            "otherEntityRelationshipName": "reservation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "reserveur",
+            "otherEntityName": "agent",
+            "otherEntityRelationshipName": "reservation"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "jourResa",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "heureDebut",
+            "fieldType": "HeureMinutes",
+            "fieldValues": "_09H00_,_09H15_,_09H30_,_09H45_",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "heureFin",
+            "fieldType": "HeureMinutes",
+            "fieldValues": "_09H00_,_09H15_,_09H30_,_09H45_",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nbPersonne",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "objet",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171013145331",
+    "entityTableName": "reservation",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no"
+}

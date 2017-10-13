@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "salle",
+            "otherEntityName": "salle",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "config"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "configName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171013145332",
+    "entityTableName": "configuration_salle",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

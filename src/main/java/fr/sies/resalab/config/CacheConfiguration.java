@@ -41,6 +41,14 @@ public class CacheConfiguration {
             cm.createCache(fr.sies.resalab.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(fr.sies.resalab.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(fr.sies.resalab.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(fr.sies.resalab.domain.Reservation.class.getName(), jcacheConfiguration);
+            cm.createCache(fr.sies.resalab.domain.Reservation.class.getName() + ".salleReservees", jcacheConfiguration);
+            cm.createCache(fr.sies.resalab.domain.Reservation.class.getName() + ".reserveurs", jcacheConfiguration);
+            cm.createCache(fr.sies.resalab.domain.ConfigurationSalle.class.getName(), jcacheConfiguration);
+            cm.createCache(fr.sies.resalab.domain.ConfigurationSalle.class.getName() + ".salles", jcacheConfiguration);
+            cm.createCache(fr.sies.resalab.domain.Agent.class.getName(), jcacheConfiguration);
+            cm.createCache(fr.sies.resalab.domain.Salle.class.getName(), jcacheConfiguration);
+            cm.createCache(fr.sies.resalab.domain.Salle.class.getName() + ".configs", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

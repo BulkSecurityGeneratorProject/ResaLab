@@ -1,0 +1,45 @@
+
+<div *ngIf="reservation">
+    <h2><span>Reservation</span> {{reservation.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Jour Resa</span></dt>
+        <dd>
+            <span>{{reservation.jourResa | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Heure Debut</span></dt>
+        <dd>
+            <span>{{reservation.heureDebut}}</span>
+        </dd>
+        <dt><span>Heure Fin</span></dt>
+        <dd>
+            <span>{{reservation.heureFin}}</span>
+        </dd>
+        <dt><span>Nb Personne</span></dt>
+        <dd>
+            <span>{{reservation.nbPersonne}}</span>
+        </dd>
+        <dt><span>Objet</span></dt>
+        <dd>
+            <span>{{reservation.objet}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{reservation.description}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'reservation/'+ reservation.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

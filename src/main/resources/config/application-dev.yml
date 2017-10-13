@@ -26,9 +26,9 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/ResaLab?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://localhost:3306/resalab?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
-        password:
+        password: password
         hikari:
             data-source-properties:
                 cachePrepStmts: true

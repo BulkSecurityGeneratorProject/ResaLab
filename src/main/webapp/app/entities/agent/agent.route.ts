@@ -1,0 +1,63 @@
+import { Injectable } from '@angular/core';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
+
+import { UserRouteAccessService } from '../../shared';
+import { JhiPaginationUtil } from 'ng-jhipster';
+
+import { AgentComponent } from './agent.component';
+import { AgentDetailComponent } from './agent-detail.component';
+import { AgentPopupComponent } from './agent-dialog.component';
+import { AgentDeletePopupComponent } from './agent-delete-dialog.component';
+
+export const agentRoute: Routes = [
+    {
+        path: 'agent',
+        component: AgentComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'Agents'
+        },
+        canActivate: [UserRouteAccessService]
+    }, {
+        path: 'agent/:id',
+        component: AgentDetailComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'Agents'
+        },
+        canActivate: [UserRouteAccessService]
+    }
+];
+
+export const agentPopupRoute: Routes = [
+    {
+        path: 'agent-new',
+        component: AgentPopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'Agents'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'agent/:id/edit',
+        component: AgentPopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'Agents'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
+        path: 'agent/:id/delete',
+        component: AgentDeletePopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'Agents'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    }
+];

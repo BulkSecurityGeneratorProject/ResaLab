@@ -1,0 +1,74 @@
+<div>
+    <h2>
+        <span>Salles</span>
+        <button class="btn btn-primary float-right jh-create-entity create-salle" [routerLink]="['/', { outlets: { popup: ['salle-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Salle
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="salles">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Nom</span></th>
+            <th><span>Numero</span></th>
+            <th><span>Max Capacite</span></th>
+            <th><span>Description</span></th>
+            <th><span>Reservation</span></th>
+            <th><span>Config</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let salle of salles ;trackBy: trackId">
+                <td><a [routerLink]="['../salle', salle.id ]">{{salle.id}}</a></td>
+                <td>{{salle.nom}}</td>
+                <td>{{salle.numero}}</td>
+                <td>{{salle.maxCapacite}}</td>
+                <td>{{salle.description}}</td>
+                <td>
+                    <div *ngIf="salle.reservation">
+                        <a [routerLink]="['../reservation', salle.reservation?.id ]" >{{salle.reservation?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let config of salle.configs; let last = last">
+                            <a class="form-control-static" [routerLink]="['../configuration-salle', config?.id ]">{{config.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../salle', salle.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'salle/'+ salle.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'salle/'+ salle.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div>
+    <h2>
+        <span>Reservations</span>
+        <button class="btn btn-primary float-right jh-create-entity create-reservation" [routerLink]="['/', { outlets: { popup: ['reservation-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Reservation
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="reservations">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="jourResa"><span>Jour Resa</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="heureDebut"><span>Heure Debut</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="heureFin"><span>Heure Fin</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nbPersonne"><span>Nb Personne</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="objet"><span>Objet</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span>Description</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let reservation of reservations ;trackBy: trackId">
+                <td><a [routerLink]="['../reservation', reservation.id ]">{{reservation.id}}</a></td>
+                <td>{{reservation.jourResa | date:'mediumDate'}}</td>
+                <td>{{reservation.heureDebut}}</td>
+                <td>{{reservation.heureFin}}</td>
+                <td>{{reservation.nbPersonne}}</td>
+                <td>{{reservation.objet}}</td>
+                <td>{{reservation.description}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../reservation', reservation.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'reservation/'+ reservation.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'reservation/'+ reservation.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="reservations && reservations.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

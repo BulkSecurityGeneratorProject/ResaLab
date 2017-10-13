@@ -1,0 +1,92 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myReservationLabel">Create or edit a Reservation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!reservation.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="reservation.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_jourResa">Jour Resa</label>
+            <div class="input-group">
+                <input id="field_jourResa" type="text" class="form-control" name="jourResa" ngbDatepicker  #jourResaDp="ngbDatepicker" [(ngModel)]="reservation.jourResa"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="jourResaDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.jourResa?.dirty && editForm.controls.jourResa?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.jourResa?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_heureDebut">Heure Debut</label>
+            <select class="form-control" name="heureDebut" [(ngModel)]="reservation.heureDebut" id="field_heureDebut"  required>
+                <option value="_09H00_">_09H00_</option>
+                <option value="_09H15_">_09H15_</option>
+                <option value="_09H30_">_09H30_</option>
+                <option value="_09H45_">_09H45_</option>
+            </select>
+            <div [hidden]="!(editForm.controls.heureDebut?.dirty && editForm.controls.heureDebut?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.heureDebut?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_heureFin">Heure Fin</label>
+            <select class="form-control" name="heureFin" [(ngModel)]="reservation.heureFin" id="field_heureFin"  required>
+                <option value="_09H00_">_09H00_</option>
+                <option value="_09H15_">_09H15_</option>
+                <option value="_09H30_">_09H30_</option>
+                <option value="_09H45_">_09H45_</option>
+            </select>
+            <div [hidden]="!(editForm.controls.heureFin?.dirty && editForm.controls.heureFin?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.heureFin?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_nbPersonne">Nb Personne</label>
+            <input type="number" class="form-control" name="nbPersonne" id="field_nbPersonne"
+                [(ngModel)]="reservation.nbPersonne"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_objet">Objet</label>
+            <input type="text" class="form-control" name="objet" id="field_objet"
+                [(ngModel)]="reservation.objet" required />
+            <div [hidden]="!(editForm.controls.objet?.dirty && editForm.controls.objet?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.objet?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="reservation.description"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

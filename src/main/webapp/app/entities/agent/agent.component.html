@@ -1,0 +1,68 @@
+<div>
+    <h2>
+        <span>Agents</span>
+        <button class="btn btn-primary float-right jh-create-entity create-agent" [routerLink]="['/', { outlets: { popup: ['agent-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Agent
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="agents">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Email</span></th>
+            <th><span>Department</span></th>
+            <th><span>Reservation</span></th>
+            <th><span>User</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let agent of agents ;trackBy: trackId">
+                <td><a [routerLink]="['../agent', agent.id ]">{{agent.id}}</a></td>
+                <td>{{agent.email}}</td>
+                <td>{{agent.department}}</td>
+                <td>
+                    <div *ngIf="agent.reservation">
+                        <a [routerLink]="['../reservation', agent.reservation?.id ]" >{{agent.reservation?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{agent.user?.id}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../agent', agent.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'agent/'+ agent.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'agent/'+ agent.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

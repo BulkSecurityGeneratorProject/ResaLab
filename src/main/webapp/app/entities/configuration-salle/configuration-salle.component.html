@@ -1,0 +1,56 @@
+<div>
+    <h2>
+        <span>Configuration Salles</span>
+        <button class="btn btn-primary float-right jh-create-entity create-configuration-salle" [routerLink]="['/', { outlets: { popup: ['configuration-salle-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Configuration Salle
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="configurationSalles">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Config Name</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let configurationSalle of configurationSalles ;trackBy: trackId">
+                <td><a [routerLink]="['../configuration-salle', configurationSalle.id ]">{{configurationSalle.id}}</a></td>
+                <td>{{configurationSalle.configName}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../configuration-salle', configurationSalle.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'configuration-salle/'+ configurationSalle.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'configuration-salle/'+ configurationSalle.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

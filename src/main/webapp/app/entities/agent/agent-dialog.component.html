@@ -1,0 +1,49 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myAgentLabel">Create or edit a Agent</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!agent.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="agent.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                [(ngModel)]="agent.email"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_department">Department</label>
+            <input type="text" class="form-control" name="department" id="field_department"
+                [(ngModel)]="agent.department"  />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_reservation">Reservation</label>
+            <select class="form-control" id="field_reservation" name="reservation" [(ngModel)]="agent.reservation" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="reservationOption.id === agent.reservation?.id ? agent.reservation : reservationOption" *ngFor="let reservationOption of reservations; trackBy: trackReservationById">{{reservationOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" [(ngModel)]="agent.user" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="userOption.id === agent.user?.id ? agent.user : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,39 @@
+
+<div *ngIf="agent">
+    <h2><span>Agent</span> {{agent.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Email</span></dt>
+        <dd>
+            <span>{{agent.email}}</span>
+        </dd>
+        <dt><span>Department</span></dt>
+        <dd>
+            <span>{{agent.department}}</span>
+        </dd>
+        <dt><span>Reservation</span></dt>
+        <dd>
+            <div *ngIf="agent.reservation">
+                <a [routerLink]="['/reservation', agent.reservation?.id]">{{agent.reservation?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{agent.user?.id}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'agent/'+ agent.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
