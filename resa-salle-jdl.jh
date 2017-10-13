@@ -1,0 +1,45 @@
+entity Reservation {
+	jourResa LocalDate,
+	heureDebut ZonedDateTime
+	heureFin ZonedDateTime,
+	nbPersonne Integer
+}
+
+entity ConfigurationSalle {
+	configName String
+}
+
+entity Agent {
+	email String,
+	department String
+}
+
+entity Salle {
+	nom String,
+	numero Integer,
+	maxCapacite Long,
+	description String
+}
+
+relationship OneToOne {
+	Agent{user} to User
+}
+
+relationship OneToMany {
+	Reservation{salleReservee} to Salle,
+	Reservation{reserveur} to Agent
+}
+
+relationship ManyToMany {
+	Salle{config} to ConfigurationSalle{salle}
+}
+
+// Set pagination options
+paginate Reservation with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Agent
+// Set an angular suffix
+angularSuffix * with mySuffix
