@@ -1,7 +1,9 @@
 entity Reservation {
 	jourResa LocalDate,
-	heureDebut ZonedDateTime
+	heureDebut ZonedDateTime,
 	heureFin ZonedDateTime,
+    objet String,
+    descrption String,
 	nbPersonne Integer
 }
 
@@ -37,7 +39,7 @@ relationship ManyToMany {
 // Set pagination options
 paginate Reservation with pagination
 
-dto * with mapstruct
+// dto * with mapstruct
 
 // Set service options to all except few
 service all with serviceImpl except Agent
